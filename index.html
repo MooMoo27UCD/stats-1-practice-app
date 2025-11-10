@@ -45,10 +45,10 @@
     <section id="q1" class="card">
       <h2>Question 1 — Sampling and Populations</h2>
       <p class="problem" id="q1-problem">Practice Exam – Data Analysis for Managers (MBA): Question 1. Sampling and
-        Populations [10 points] A company wants to estimate the average number of hours employees spend on training each
-        year. They collect a simple random sample of 100 employees. <br><strong>a)</strong> Define the population,
-        sample, parameter, and statistic. <br><strong>b)</strong> Explain why using a random sample is important in this
-        context.</p>
+        Populations [10 points] A company (Vector Logistics) wants to estimate the average number of annual training hours. 
+        They collect a simple random sample of 198 employees. 
+        <br><strong>a)</strong> Define the population, sample, parameter, and statistic. 
+        <br><strong>b)</strong> Explain why using a random sample is important in this context.</p>
 
       <div class="grid-2">
         <label>Population
@@ -79,9 +79,9 @@
         <h3>Solution</h3>
         <ul>
           <li><strong>Population:</strong> All employees at the company.</li>
-          <li><strong>Sample:</strong> The 100 employees selected and measured.</li>
+          <li><strong>Sample:</strong> The 198 employees selected and measured.</li>
           <li><strong>Parameter:</strong> The true (unknown) average training hours for all employees.</li>
-          <li><strong>Statistic:</strong> The sample mean training hours computed from the 100 employees.</li>
+          <li><strong>Statistic:</strong> The sample mean training hours computed from the 198 employees.</li>
         </ul>
         <p><strong>Why random sampling?</strong> It helps make the sample representative so the statistic is a good
           estimator of the parameter; it also justifies inference (CLT, standard errors, CIs, tests).</p>
@@ -93,9 +93,9 @@
       <h2>Question 2 — Normal Distribution Interpretation</h2>
       <p class="problem" id="q2-problem">Practice Exam – Data Analysis for Managers (MBA): Question 2. Normal
         Distribution Interpretation [10 points] Assume customer satisfaction scores follow a Normal distribution with
-        mean μ = 8.4 and standard deviation σ = 1.2.<br><strong>a)</strong> Interpret what the mean and standard
-        deviation tell us about customer satisfaction.<br><strong>b)</strong> Using the 68–95–99.7 rule, what proportion
-        of customers have satisfaction scores above 9.6?</p>
+        mean μ = 8 and standard deviation σ = 1.7.
+        <br><strong>a)</strong> Interpret what the mean and standard deviation tell us about customer satisfaction.
+        <br><strong>b)</strong> Using the 68–95–99.7 rule, what proportion of customers have satisfaction scores above 11.4?</p>
 
       <div class="grid-2">
         <label>Interpret the mean (<span id="q2-mu-label"></span>) and SD (<span id="q2-sigma-label"></span>) in plain
@@ -112,7 +112,7 @@
             </label>
             <button id="q2-check">Check</button>
           </div>
-          <p class="hint">Tip: You can enter <strong>16</strong> (percent) or <strong>0.16</strong> (proportion); both
+          <p class="hint">Tip: You can enter <strong>2.5</strong> (percent) or <strong>0.025</strong> (proportion); both
             are accepted.</p>
           <p id="q2-feedback" class="feedback"></p>
           <canvas id="q2-canvas" width="600" height="180" aria-label="Normal curve with shaded upper tail"></canvas>
@@ -127,11 +127,11 @@
       <div id="q2-explanation" class="answer hidden">
         <h3>Full Solution</h3>
         <ol>
-          <li><strong>Interpretation of μ and σ:</strong> μ = 8.4 is the average satisfaction; σ = 1.2 is the typical
-            deviation.</li>
-          <li><strong>Threshold 9.6:</strong> 9.6 − 8.4 = 1.2 = 1σ above the mean.</li>
-          <li><strong>Empirical rule:</strong> ~68% within ±1σ ⇒ ~16% above +1σ.</li>
+          <li><strong>Interpretation of μ and σ:</strong> μ = 8 is the average satisfaction; σ = 1.7 is the typical deviation.</li>
+          <li><strong>Threshold 11.4:</strong> 11.4 − 8 = 3.4 = 2σ above the mean (since 2 × 1.7 = 3.4).</li>
+          <li><strong>Empirical rule:</strong> ~95% lie within ±2σ, leaving ~5% in both tails combined ⇒ ~2.5% above +2σ.</li>
         </ol>
+        <p><em>Acceptable answers:</em> 0.025 or 2.5%.</p>
         <p><em>Reference:</em> Keller 12e — Ch. 8 (Normal), Ch. 4 (Empirical Rule context).</p>
       </div>
     </section>
@@ -448,7 +448,9 @@
     <section id="bonus-ev" class="card">
       <h2>Bonus — Decision-Making: Expected Value</h2>
       <p class="problem" id="bonus-problem">
-        Market has two states: Good and Bad. Action A and B have payoffs in each state.
+        Market has two states: Good (p = 0.42) and Bad (p = 0.58).
+        Action A payoffs: Good = 53, Bad = 2.
+        Action B payoffs: Good = 80, Bad = −5.
       </p>
       <div class="grid-2">
         <div class="calc-box">
@@ -468,7 +470,13 @@
           </div>
           <div id="bonus-feedback" class="feedback"></div>
         </div>
-        <div id="bonus-work" class="answer hidden"></div>
+        <div id="bonus-work" class="answer hidden">
+          <h3>Show Calculation</h3>
+          <p><strong>EV(A)</strong> = 0.42 × 53 + 0.58 × 2 = 22.26 + 1.16 = <strong>23.42</strong></p>
+          <p><strong>EV(B)</strong> = 0.42 × 80 + 0.58 × (−5) = 33.60 − 2.90 = <strong>30.70</strong></p>
+          <p><strong>Choose Action B.</strong> EV difference = 30.70 − 23.42 = <strong>7.28</strong>.</p>
+          <p><em>Hint:</em> EV = Σ (probability × payoff).</p>
+        </div>
       </div>
       <p class="hint">Hint: EV = Σ (probability × payoff).</p>
     </section>
