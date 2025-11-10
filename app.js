@@ -31,50 +31,43 @@ let state = {
   q1Context: {}
 };
 
-function generateNumbers() {
-    // Q1: sampling question with randomized company/metric/n
-    const companies = ["Acme Analytics", "Northstar Retail", "Nimbus Labs", "Orion Biotech", "Vector Logistics"];
-    const metrics   = ["training hours this year", "annual training hours", "hours of professional development this year"];
-    const company   = companies[randInt(0, companies.length - 1)];
-    const metric    = metrics[randInt(0, metrics.length - 1)];
-    const n         = randInt(80, 200); // sample size
-    state.n = n;
-    state.q1Context = { company, metric, n };
+// Q1: sampling question with randomized company/metric/n
+const companies = ["Acme Analytics", "Northstar Retail", "Nimbus Labs", "Orion Biotech", "Vector Logistics"];
+const metrics = ["training hours this year", "annual training hours", "hours of professional development this year"];
+const company = companies[randInt(0, companies.length - 1)];
+const metric = metrics[randInt(0, metrics.length - 1)];
+const n = randInt(80, 200); // sample size
+state.n = n;
+state.q1Context = { company, metric, n };
 
-    // Q1: update problem stem
-    const q1El = document.getElementById("q1-problem");
-    if (q1El) {
-      q1El.innerHTML = `
-        A company (<strong>${company}</strong>) wants to estimate the average number of
-        <strong>${metric}</strong>. They collect a <em>simple random sample</em> of
-        <strong>${n}</strong> employees. Define the <strong>population</strong>,
-        <strong>sample</strong>, <strong>parameter</strong>, and <strong>statistic</strong>.
-      `;
-      // Re-typeset any inline math we just injected
-      if (window.MathJax?.typesetPromise) { MathJax.typesetPromise([q1El]); }
-    }
+// Q1 — Write the problem text dynamically
+const q1El = document.getElementById("q1-problem");
+if (q1El) {
+  q1El.innerHTML = `A company (<strong>${company}</strong>) wants to estimate the average number of <strong>${metric}</strong>. They collect a <em>simple random sample</em> of <strong>${n}</strong> employees. Define the <strong>population</strong>, <strong>sample</strong>, <strong>parameter</strong>, and <strong>statistic</strong>.`;
+}
 
-    // Q1: update solution list + “why random sampling?”
-    const modelList = document.getElementById("q1-model-list");
-    if (modelList) {
-      modelList.innerHTML = "";
-      [
-        `<strong>Population:</strong> All employees at ${company} whose ${metric} are of interest (this year).`,
-        `<strong>Sample:</strong> The ${n} employees selected via simple random sampling.`,
-        `<strong>Parameter:</strong> The population mean <em>\$begin:math:text$\\\\mu\\$end:math:text$</em> = average ${metric} for <em>all</em> employees.`,
-        `<strong>Statistic:</strong> The sample mean <em>\$begin:math:text$\\\\bar{x}\\$end:math:text$</em> computed from the ${n} sampled employees (and possibly the sample SD <em>\$begin:math:text$s\\$end:math:text$</em>).`
-      ].forEach(html => {
-        const li = document.createElement("li");
-        li.innerHTML = html;
-        modelList.appendChild(li);
-      });
-      if (window.MathJax?.typesetPromise) { MathJax.typesetPromise([modelList]); }
-    }
-    const q1Why = document.getElementById("q1-why");
-    if (q1Why) {
-      q1Why.innerHTML = `<strong>Why random sampling?</strong> It helps make the sample representative so the statistic is a good estimator of the parameter; it also justifies inference (CLT, SEs, CIs, tests).`;
-    }
+// Q1 — Fill dynamic solution list
+const modelList = document.getElementById("q1-model-list");
+if (modelList) {
+  modelList.innerHTML = "";
+  [
+    `<strong>Population:</strong> All employees at ${company} whose ${metric} are of interest (this year).`,
+    `<strong>Sample:</strong> The ${n} employees selected via simple random sampling.`,
+    `<strong>Parameter:</strong> The population mean <em>\$begin:math:text$\\\\mu\\$end:math:text$</em> = average ${metric} for <em>all</em> employees.`,
+    `<strong>Statistic:</strong> The sample mean <em>\$begin:math:text$\\\\bar{x}\\$end:math:text$</em> computed from the ${n} sampled employees (and possibly the sample SD <em>\$begin:math:text$s\\$end:math:text$</em>).`
+  ].forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html;
+    modelList.appendChild(li);
+  });
+  if (window.MathJax?.typesetPromise) { MathJax.typesetPromise([modelList]); }
+}
 
+// Q1 — Why random sampling explanation
+const q1Why = document.getElementById("q1-why");
+if (q1Why) {
+  q1Why.innerHTML = `<strong>Why random sampling?</strong> It helps make the sample representative so the statistic is a good estimator of the parameter and justifies inference (CLT, standard errors, CIs, hypothesis tests).`;
+}
   // Q2: normal distribution numbers (random but answers tied to state)
 
   // Q2: normal distribution numbers
