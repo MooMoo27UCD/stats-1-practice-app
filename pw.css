@@ -1,0 +1,46 @@
+#pw-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#pw-panel {
+  background: #111;
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  width: 300px;
+}
+
+#pw-input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+#pw-submit {
+  margin-top: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+#pw-overlay {
+  visibility: visible;
+}
+
+/* Error message under the password box */
+#pw-msg {
+  color: #ff4d4d;
+  margin-top: 10px;
+  font-weight: 600;
+  display: block;
+  /* make sure it's visible */
+}

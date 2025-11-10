@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MBA Practice: Data Analysis for Managers</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="pw.css" />
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <!-- PASSWORD OVERLAY -->
+  <div id="pw-overlay">
+    <div id="pw-panel">
+      <h2>Enter Password</h2>
+      <input type="password" id="pw-input" placeholder="Password" />
+      <button id="pw-submit">Unlock</button>
+      <p id="pw-msg"></p>
+    </div>
+  </div>
+
+  <script src="password.js"></script>
+  <!-- END PASSWORD OVERLAY -->
+  <header>
+    <h1>MBA Practice – Data Analysis for Managers</h1>
+    <p class="subtitle">Sampling, Populations, and Normal Distribution Interpretation</p>
+  </header>
+
+  <main>
+    <div class="card" style="display:flex;gap:.5rem;align-items:center;justify-content:space-between">
+      <div>
+        <strong>Study Mode Controls</strong>
+        <p style="margin:.25rem 0 0 0;color:#374151">Reveal/hide all solution panels at once.</p>
+      </div>
+      <div class="actions">
+        <button id="show-all">Show All Solutions</button>
+        <button id="hide-all">Hide All Solutions</button>
+      </div>
+    </div>
+    <section id="q1" class="card">
+      <h2>Question 1 — Sampling and Populations</h2>
+      <p class="problem" id="q1-problem">Practice Exam – Data Analysis for Managers (MBA): Question 1. Sampling and
+        Populations [10 points] A company wants to estimate the average number of hours employees spend on training each
+        year. They collect a simple random sample of 100 employees. <br><strong>a)</strong> Define the population,
+        sample, parameter, and statistic. <br><strong>b)</strong> Explain why using a random sample is important in this
+        context.</p>
+
+      <div class="grid-2">
+        <label>Population
+          <textarea id="q1-population" placeholder="Describe the entire group of interest..."></textarea>
+        </label>
+
+        <label>Sample
+          <textarea id="q1-sample" placeholder="Describe the selected subset..."></textarea>
+        </label>
+
+        <label>Parameter
+          <textarea id="q1-parameter"
+            placeholder="Name the unknown quantity for the whole population (symbol and meaning)..."></textarea>
+        </label>
+
+        <label>Statistic
+          <textarea id="q1-statistic"
+            placeholder="Name the summary computed from the sample (symbol and meaning)..."></textarea>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="q1-show-answers">Show Model Answer</button>
+        <button id="q1-clear">Clear</button>
+      </div>
+
+      <div id="q1-answer" class="answer hidden">
+        <h3>Solution</h3>
+        <ul>
+          <li><strong>Population:</strong> All employees at the company.</li>
+          <li><strong>Sample:</strong> The 100 employees selected and measured.</li>
+          <li><strong>Parameter:</strong> The true (unknown) average training hours for all employees.</li>
+          <li><strong>Statistic:</strong> The sample mean training hours computed from the 100 employees.</li>
+        </ul>
+        <p><strong>Why random sampling?</strong> It helps make the sample representative so the statistic is a good
+          estimator of the parameter; it also justifies inference (CLT, standard errors, CIs, tests).</p>
+        <p><em>Reference:</em> Keller 12e — Ch. 5 (Sampling), Ch. 9 (Sampling Distributions).</p>
+      </div>
+    </section>
+
+    <section id="q2" class="card">
+      <h2>Question 2 — Normal Distribution Interpretation</h2>
+      <p class="problem" id="q2-problem">Practice Exam – Data Analysis for Managers (MBA): Question 2. Normal
+        Distribution Interpretation [10 points] Assume customer satisfaction scores follow a Normal distribution with
+        mean μ = 8.4 and standard deviation σ = 1.2.<br><strong>a)</strong> Interpret what the mean and standard
+        deviation tell us about customer satisfaction.<br><strong>b)</strong> Using the 68–95–99.7 rule, what proportion
+        of customers have satisfaction scores above 9.6?</p>
+
+      <div class="grid-2">
+        <label>Interpret the mean (<span id="q2-mu-label"></span>) and SD (<span id="q2-sigma-label"></span>) in plain
+          English
+          <textarea id="q2-interpretation" placeholder="Explain the center and spread in the context..."></textarea>
+        </label>
+
+        <div class="calc-box">
+          <p><strong>Using the 68–95–99.7 rule</strong>, what proportion of customers have scores above the threshold
+            shown?</p>
+          <div class="inline">
+            <label>Answer (%):
+              <input type="number" id="q2-answer" step="0.01" placeholder="e.g., 16" />
+            </label>
+            <button id="q2-check">Check</button>
+          </div>
+          <p class="hint">Tip: You can enter <strong>16</strong> (percent) or <strong>0.16</strong> (proportion); both
+            are accepted.</p>
+          <p id="q2-feedback" class="feedback"></p>
+          <canvas id="q2-canvas" width="600" height="180" aria-label="Normal curve with shaded upper tail"></canvas>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="q2-show-explanation">Show Explanation</button>
+        <button id="regen">Regenerate New Numbers</button>
+      </div>
+
+      <div id="q2-explanation" class="answer hidden">
+        <h3>Full Solution</h3>
+        <ol>
+          <li><strong>Interpretation of μ and σ:</strong> μ = 8.4 is the average satisfaction; σ = 1.2 is the typical
+            deviation.</li>
+          <li><strong>Threshold 9.6:</strong> 9.6 − 8.4 = 1.2 = 1σ above the mean.</li>
+          <li><strong>Empirical rule:</strong> ~68% within ±1σ ⇒ ~16% above +1σ.</li>
+        </ol>
+        <p><em>Reference:</em> Keller 12e — Ch. 8 (Normal), Ch. 4 (Empirical Rule context).</p>
+      </div>
+    </section>
+
+
+    <section id="q3" class="card">
+      <h2>Question 3 — Joint and Conditional Probabilities</h2>
+      <p class="problem">Question 3. Joint and Conditional Probabilities [10 points] Let C = “buys coffee weekly” and L
+        = “uses loyalty card.” Given: P(C) = 0.60, P(L) = 0.40, and P(L | C) = 0.50.<br><strong>a)</strong> Compute P(C
+        ∩ L).<br><strong>b)</strong> Compute P(C | L).<br><strong>c)</strong> Interpret both probabilities in a
+        managerial context.</p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <label>P(C ∩ L)
+            <input type="number" id="q3-int" step="0.01" placeholder="e.g., 0.30" />
+          </label>
+          <label>P(C | L)
+            <input type="number" id="q3-cond" step="0.01" placeholder="e.g., 0.75" />
+          </label>
+          <div class="actions">
+            <button id="q3-check">Check</button>
+            <button id="q3-show">Show Explanation</button>
+          </div>
+          <p class="hint">Tip: Enter as a decimal or percent (e.g., <strong>0.30</strong> or <strong>30</strong>).</p>
+          <div id="q3-feedback" class="feedback"></div>
+        </div>
+        <div id="q3-expl" class="answer hidden">
+          <h3>Solution</h3>
+          <ol>
+            <li>P(C ∩ L) = 0.60 × 0.50 = <strong>0.30</strong>.</li>
+            <li>P(C | L) = 0.30 / 0.40 = <strong>0.75</strong>.</li>
+            <li>Interpretation: 30% do both; among loyalty users, 75% buy coffee weekly.</li>
+          </ol>
+          <p><em>Reference:</em> Keller 12e — Ch. 6 (Probability).</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="q4" class="card">
+      <h2>Question 4 — Two-Way Table and Probability Interpretation</h2>
+      <p class="problem">Question 4. Two-Way Table and Probability Interpretation [10 points] Joint probabilities: Dept
+        A &amp; Promoted = 0.12; Dept A &amp; Not Promoted = 0.28; Dept B &amp; Promoted = 0.18; Dept B &amp; Not
+        Promoted = 0.42.<br><strong>a)</strong> P(Dept A)<br><strong>b)</strong> P(Promoted)<br><strong>c)</strong>
+        P(Promoted | Dept A)<br><strong>d)</strong> Interpret the results for managers.</p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <label>P(Dept A)
+            <input type="number" id="q4-pa" step="0.01" placeholder="0–1" />
+          </label>
+          <label>P(Promoted)
+            <input type="number" id="q4-pp" step="0.01" placeholder="0–1" />
+          </label>
+          <label>P(Promoted | Dept A)
+            <input type="number" id="q4-cond" step="0.01" placeholder="0–1" />
+          </label>
+          <div class="actions">
+            <button id="q4-check">Check</button>
+            <button id="q4-show">Show Explanation</button>
+          </div>
+          <p class="hint">Tip: Enter as a decimal or percent (e.g., <strong>0.40</strong> or <strong>40</strong>).</p>
+          <div id="q4-feedback" class="feedback"></div>
+        </div>
+        <div>
+          <canvas id="q4-canvas" width="600" height="220" aria-label="Two-way table visualization"></canvas>
+        </div>
+      </div>
+      <div id="q4-expl" class="answer hidden">
+        <h3>Solution</h3>
+        <ol>
+          <li>P(Dept A) = 0.12 + 0.28 = <strong>0.40</strong>.</li>
+          <li>P(Promoted) = 0.12 + 0.18 = <strong>0.30</strong>.</li>
+          <li>P(Promoted | Dept A) = 0.12 / 0.40 = <strong>0.30</strong>.</li>
+          <li>Interpretation: Department A promotion rate equals overall rate (30%).</li>
+        </ol>
+        <p><em>Reference:</em> Keller 12e — Ch. 4 (Tables), Ch. 6 (Conditional probability).</p>
+      </div>
+    </section>
+
+
+
+    <section id="q5" class="card">
+      <h2>Question 5 — Correlation vs. Causation</h2>
+      <p class="problem">Question 5. Correlation vs. Causation [10 points] Regions with higher advertising budgets tend
+        to have higher sales.<br><strong>a)</strong> Does this imply causation?<br><strong>b)</strong> Provide one
+        alternative explanation.<br><strong>c)</strong> Discuss a business risk of confusing correlation with causation.
+      </p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <label>Does this imply causation?</label>
+          <div class="mcq">
+            <label><input type="radio" name="q5a" value="yes"> Yes, correlation implies causation.</label>
+            <label><input type="radio" name="q5a" value="no"> No, correlation does not imply causation.</label>
+          </div>
+          <label>Alternative explanation</label>
+          <select id="q5b">
+            <option value="">— choose —</option>
+            <option value="market">Bigger markets both spend more and sell more.</option>
+            <option value="magic">It must be pure luck.</option>
+            <option value="reverse">Reverse causality: higher sales cause higher ad budgets.</option>
+          </select>
+          <label>Business risk</label>
+          <select id="q5c">
+            <option value="">— choose —</option>
+            <option value="overspend">Overspending on ads without incremental lift; wasted budget.</option>
+            <option value="no-risk">No risk, correlation is enough.</option>
+          </select>
+          <div class="actions">
+            <button id="q5-check">Check</button>
+            <button id="q5-show">Show Model Reasoning</button>
+          </div>
+          <div id="q5-feedback" class="feedback"></div>
+        </div>
+        <div id="q5-guidance" class="answer hidden">
+          <h3>Model Reasoning</h3>
+          <ul>
+            <li><strong>Does correlation imply causation?</strong> No. Correlation alone does not establish
+              cause-and-effect.</li>
+            <li><strong>Alternative explanation(s):</strong> (i) <em>Market size</em>: larger regions both spend more on
+              ads and sell more; (ii) <em>Reverse causality</em>: higher sales may lead to higher ad budgets.</li>
+            <li><strong>Business risk:</strong> Overspending on ads without incremental lift (wasted budget and
+              opportunity cost).</li>
+            <li><strong>Better evidence:</strong> Randomized geo-lift tests, holdout groups, or regression with strong
+              controls.</li>
+          </ul>
+          <p><em>Reference:</em> Keller 12e — Ch. 16 (Simple Linear Regression & Correlation).</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="q6" class="card">
+      <h2>Question 6 — Hypothesis Testing for Means</h2>
+      <p class="problem">
+        Question 6. Hypothesis Testing for Means [10 points]
+        Last year’s mean delivery time was μ₀ = 45 minutes with known σ = 6.
+        This year we run a new routing algorithm on a sample of n = 36 deliveries and observe x̄ = 43.5.
+        <br><strong>a)</strong> State the appropriate hypotheses to test whether the mean decreased.
+        <br><strong>b)</strong> Compute the test statistic and decision at α = 0.05 (one-sided).
+        <br><strong>c)</strong> Provide and interpret the p-value.
+      </p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <label>Test statistic z
+            <input type="number" id="q6-z" step="0.01" placeholder="e.g., -1.50" />
+          </label>
+          <label>Decision
+            <select id="q6-decision">
+              <option value="">— choose —</option>
+              <option value="reject">Reject H₀</option>
+              <option value="fail">Fail to reject H₀</option>
+            </select>
+          </label>
+          <label>p-value (one-sided)
+            <input type="number" id="q6-p" step="0.001" placeholder="e.g., 0.067" />
+          </label>
+          <div class="actions">
+            <button id="q6-check">Check</button>
+            <button id="q6-show">Show Solution & Visual</button>
+          </div>
+          <div id="q6-feedback" class="feedback"></div>
+        </div>
+      </div>
+      <div id="q6-soln" class="answer hidden">
+        <h3>Solution</h3>
+        <ol>
+          <li><strong>Hypotheses:</strong> H₀: μ = 45; H₁: μ &lt; 45.</li>
+          <li><strong>SE:</strong> σ/√n = 6/√36 = 1.</li>
+          <li><strong>z:</strong> (43.5 − 45)/1 = −1.50.</li>
+          <li><strong>Decision (α=0.05, one-sided):</strong> critical z = −1.645; since −1.50 &gt; −1.645, <strong>Fail
+              to reject H₀</strong>.</li>
+          <li><strong>p-value:</strong> Φ(−1.50) ≈ 0.067 ⇒ not below 0.05.</li>
+        </ol>
+        <p><em>Reference:</em> Keller 12e — Ch. 11 (Hypothesis Testing), Ch. 9 (Sampling Distributions).</p>
+        <div style="margin-top:0.75rem">
+          <canvas id="q6-canvas" width="600" height="220" aria-label="Z-test visual"></canvas>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="q7" class="card">
+      <h2>Question 7 — 95% Confidence Interval for a Mean</h2>
+      <p class="problem">Question 7. Confidence Interval [10 points] A sample of n = 50 has x̄ = 42 and s = 8. Construct
+        a 95% confidence interval for μ and interpret it.</p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <label>Lower
+            <input type="number" id="q7-lo" step="0.01" />
+          </label>
+          <label>Upper
+            <input type="number" id="q7-hi" step="0.01" />
+          </label>
+          <div class="actions">
+            <button id="q7-check">Check</button>
+            <button id="q7-show">Show Steps & Visual</button>
+          </div>
+          <div id="q7-feedback" class="feedback"></div>
+        </div>
+      </div>
+      <div id="q7-steps" class="answer hidden">
+        <div style="margin:0.75rem 0">
+          <canvas id="q7-canvas" width="600" height="220" aria-label="CI visual"></canvas>
+        </div>
+        <h3>Solution</h3>
+        <ol>
+          <li>SE = s/√n = 8/√50 ≈ 1.131.</li>
+          <li>95% margin ≈ 1.96 × 1.131 ≈ 2.22.</li>
+          <li>CI ≈ (42 − 2.22, 42 + 2.22) = (<strong>39.78</strong>, <strong>44.22</strong>).</li>
+          <li>Interpretation: We are 95% confident the true mean lies in this interval.</li>
+        </ol>
+        <p><em>Reference:</em> Keller 12e — Ch. 10 (Estimation), Ch. 9 (Sampling Distributions).</p>
+      </div>
+    </section>
+
+
+    <section id="q8" class="card">
+      <h2>Question 8 — Type I (α) and Type II (β) Errors</h2>
+      <p class="problem">Question 8. Type I and Type II Errors [10 points] We test H₀: μ = 100 at α = 0.05 (two-sided)
+        with known σ = 10 and n = 25. We reject H₀ if |Z| > 1.96. Suppose the true mean is μ =
+        102.<br><strong>a)</strong> Define a Type I error in this context.<br><strong>b)</strong> Compute the Type II
+        error probability β.<br><strong>c)</strong> Interpret β in managerial terms.</p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <label>β (probability of Type II error)
+            <input type="number" id="q8-beta" step="0.001" />
+          </label>
+          <div class="actions">
+            <button id="q8-check">Check</button>
+            <button id="q8-show">Show Calculation & Visual</button>
+          </div>
+          <p class="hint">Tip: Enter β as a decimal or percent (e.g., <strong>0.83</strong> or <strong>83</strong>).</p>
+          <div id="q8-feedback" class="feedback"></div>
+        </div>
+      </div>
+      <div id="q8-soln" class="answer hidden">
+        <div style="margin-top:0.75rem">
+          <canvas id="q8-canvas" width="600" height="220" aria-label="Type II visual"></canvas>
+        </div>
+        <h3>Solution</h3>
+        <ol>
+          <li><strong>Type I (α=0.05):</strong> Rejecting H₀ when H₀ is true (false positive).</li>
+          <li><strong>β calculation (μ=102):</strong> Acceptance region for x̄ is [96.08, 103.92]. With SE=2, β ≈
+            Φ(0.96) − Φ(−2.96) ≈ <strong>0.83</strong>.</li>
+          <li><strong>Interpretation:</strong> With true mean 102, the test misses the change ~83% of the time (low
+            power).</li>
+        </ol>
+        <p><em>Reference:</em> Keller 12e — Ch. 11 (Type I/II), Ch. 9 (Sampling Distributions).</p>
+      </div>
+    </section>
+
+
+    <section id="q9" class="card">
+      <h2>Question 9 — Statistical vs. Practical Significance</h2>
+      <p class="problem">Question 9. Statistical vs. Practical Significance [10 points] Conversion increases from 8.0%
+        to 8.2% and is statistically significant.<br><strong>a)</strong> Explain statistical vs practical
+        significance.<br><strong>b)</strong> Provide a business recommendation.</p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <p>Explain the difference and give a manager’s recommendation (briefly).</p>
+          <textarea id="q9-text"
+            placeholder="Key points: effect size, cost/benefit, sample size, practical impact..."></textarea>
+          <div class="actions">
+            <button id="q9-show">Show Guidance</button>
+          </div>
+        </div>
+        <div id="q9-guidance" class="answer hidden">
+          <h3>Guidance / Solution</h3>
+          <ul>
+            <li><strong>Statistical significance:</strong> p-value small &ne; effect is large.</li>
+            <li><strong>Practical significance:</strong> +0.2 pp may be trivial or meaningful; depends on cost and
+              volume.</li>
+            <li><strong>Recommendation:</strong> Pilot where ROI is favorable; scale if unit economics justify.</li>
+          </ul>
+          <p><em>Reference:</em> Keller 12e — Ch. 10 (Estimation), Ch. 11 (Hypothesis Testing).</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="q10" class="card">
+      <h2>Question 10 — Graphical Interpretation</h2>
+      <p class="problem">Question 10. Graphical Interpretation [10 points] A scatterplot shows a downward slope between
+        service response time (x) and customer satisfaction (y) across stores.<br><strong>a)</strong> Interpret the
+        relationship.<br><strong>b)</strong> What additional evidence is needed to argue causation?</p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <p>What does this indicate? What else would you need to claim that faster response <em>causes</em> higher
+            satisfaction?</p>
+          <textarea id="q10-text"
+            placeholder="Interpret the negative association; discuss confounders, experiments, controls..."></textarea>
+          <div class="actions">
+            <button id="q10-show">Show Guidance</button>
+          </div>
+        </div>
+        <div>
+          <canvas id="q10-canvas" width="600" height="220" aria-label="Scatter with negative slope"></canvas>
+        </div>
+      </div>
+      <div id="q10-guidance" class="answer hidden">
+        <h3>Guidance / Solution</h3>
+        <ul>
+          <li><strong>Interpretation:</strong> Negative association; slower response → lower satisfaction on average.
+          </li>
+          <li><strong>Causation needs:</strong> Experiments or strong controls (confounders: staffing, volume, case
+            mix).</li>
+        </ul>
+        <p><em>Reference:</em> Keller 12e — Ch. 16 (Regression & Correlation).</p>
+      </div>
+    </section>
+
+
+    <section id="bonus-ev" class="card">
+      <h2>Bonus — Decision-Making: Expected Value</h2>
+      <p class="problem" id="bonus-problem">
+        Market has two states: Good and Bad. Action A and B have payoffs in each state.
+      </p>
+      <div class="grid-2">
+        <div class="calc-box">
+          <label>Your choice
+            <select id="bonus-choice">
+              <option value="">— choose —</option>
+              <option value="A">Action A</option>
+              <option value="B">Action B</option>
+            </select>
+          </label>
+          <label>EV difference (winner − other)
+            <input type="number" id="bonus-evdiff" step="0.01" placeholder="Enter value" />
+          </label>
+          <div class="actions">
+            <button id="bonus-check">Check</button>
+            <button id="bonus-show">Show Calculation</button>
+          </div>
+          <div id="bonus-feedback" class="feedback"></div>
+        </div>
+        <div id="bonus-work" class="answer hidden"></div>
+      </div>
+      <p class="hint">Hint: EV = Σ (probability × payoff).</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for quick practice. Numbers regenerate to keep the core concepts while changing specifics.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

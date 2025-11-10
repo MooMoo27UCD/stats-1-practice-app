@@ -1,0 +1,37 @@
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif;line-height:1.4;color:#111;background:#fafafa}
+header{padding:1.25rem 1rem;background:#111;color:#fff}
+h1{margin:.2rem 0 0 0;font-size:1.5rem}
+.subtitle{margin:.25rem 0 0 0;color:#ddd}
+/* Keep page from scrolling while locked */
+body.locked { 
+  overflow: hidden; 
+}
+
+/* Hide all page content EXCEPT the password overlay */
+body.locked > *:not(#pw-overlay) { 
+  display: none; 
+}
+main{max-width:1000px;margin:0 auto;padding:1rem}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1rem;margin:1rem 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.problem{background:#f6f7f9;border-left:4px solid #374151;padding:.75rem;border-radius:6px;margin-bottom:1rem}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.75rem}
+label{display:flex;flex-direction:column;font-weight:600;gap:.25rem}
+textarea{min-height:72px;padding:.5rem;border:1px solid #d1d5db;border-radius:8px;background:#fff;font:inherit}
+input[type=number]{padding:.5rem;border:1px solid #d1d5db;border-radius:8px;width:140px}
+.actions{display:flex;gap:.5rem;margin-top:.75rem}
+button{padding:.55rem .8rem;border:1px solid #111;background:#111;color:#fff;border-radius:8px;cursor:pointer}
+button:hover{filter:brightness(1.05)}
+button:disabled{opacity:.6;cursor:not-allowed}
+.answer{margin-top:.75rem;padding:.75rem;background:#f9fafb;border:1px dashed #cbd5e1;border-radius:8px}
+.hidden{display:none}
+.calc-box{padding:.5rem;border:1px solid #e5e7eb;border-radius:8px;background:#fbfbfe}
+.inline{display:flex;align-items:center;gap:.5rem;margin:.5rem 0}
+.feedback{min-height:1.2rem;font-weight:600}
+footer{padding:1rem;text-align:center;color:#555}
+canvas{width:100%;height:auto;border:1px solid #e5e7eb;border-radius:8px;background:#fff}
+#pw-overlay { visibility: visible; }
+#pw-msg {
+  color: #ff4d4d;
+  margin-top: 10px;
+  font-weight: 600;
+}
