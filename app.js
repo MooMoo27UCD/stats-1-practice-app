@@ -923,6 +923,29 @@ window.addEventListener("DOMContentLoaded", ()=>{
   });
 });
 
+// ---- Robust "Show Solution" wiring via event delegation ----
+function safeToggle(id){
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('hidden');
+}
+
+// One global click handler that survives regenerated DOM
+document.addEventListener('click', (e) => {
+  const t = e.target;
+
+  // Q1
+  if (t && t.id === 'q1-show-answers') {
+    safeToggle('q1-answer');
+  }
+
+  // Q2
+  if (t && t.id === 'q2-show-explanation') {
+    safeToggle('q2-explanation');
+  }
+
+  // Add more for Q3–Q10 later if needed
+});
+
 function toggleAllSolutions(show){
   const ids = ["q1-answer","q2-explanation","q3-expl","q4-expl","q5-guidance","q6-soln","q7-steps","q8-soln","q9-guidance","q10-guidance"];
   ids.forEach(id=>{
