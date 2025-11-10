@@ -32,34 +32,50 @@ let state = {
 };
 
 function generateNumbers() {
-  // Q1: sampling question with randomized company/metric/n
-  const companies = ["Acme Analytics", "Northstar Retail", "Nimbus Labs", "Orion Biotech", "Vector Logistics"];
-  const metrics = ["training hours this year", "annual training hours", "hours of professional development this year"];
-  const company = companies[randInt(0, companies.length - 1)];
-  const metric = metrics[randInt(0, metrics.length - 1)];
-  const n = randInt(80, 200); // sample size
-  state.n = n;
-  state.q1Context = { company, metric, n };
+    // Q1: sampling question with randomized company/metric/n
+    const companies = ["Acme Analytics", "Northstar Retail", "Nimbus Labs", "Orion Biotech", "Vector Logistics"];
+    const metrics   = ["training hours this year", "annual training hours", "hours of professional development this year"];
+    const company   = companies[randInt(0, companies.length - 1)];
+    const metric    = metrics[randInt(0, metrics.length - 1)];
+    const n         = randInt(80, 200); // sample size
+    state.n = n;
+    state.q1Context = { company, metric, n };
 
-  // Q1 DOM writes (guarded)
-  const q1El = document.getElementById("q1-problem");
-  if (q1El) {
-    q1El.innerHTML = `A company (<strong>${company}</strong>) wants to estimate the average number of <strong>${metric}</strong>. They collect a <em>simple random sample</em> of <strong>${n}</strong> employees. Define the <strong>population</strong>, <strong>sample</strong>, <strong>parameter</strong>, and <strong>statistic</strong>.`;
-  }
-  const modelList = document.getElementById("q1-model-list");
-  if (modelList) {
-    modelList.innerHTML = "";
-    [
-      `<strong>Population:</strong> All employees at ${company} whose ${metric} are of interest (this year).`,
-      `<strong>Sample:</strong> The ${n} employees selected via simple random sampling.`,
-      `<strong>Parameter:</strong> The population mean <em>\\(\\mu\\)</em> = average ${metric} for <em>all</em> employees.`,
-      `<strong>Statistic:</strong> The sample mean <em>\\(\\\\bar{x}\\)</em> computed from the ${n} sampled employees (and possibly the sample SD <em>\\(s\\)</em>).`
-    ].forEach(li => {
-      const node = document.createElement("li");
-      node.innerHTML = li;
-      modelList.appendChild(node);
-    });
-  }
+    // Q1: update problem stem
+    const q1El = document.getElementById("q1-problem");
+    if (q1El) {
+      q1El.innerHTML = `
+        A company (<strong>${company}</strong>) wants to estimate the average number of
+        <strong>${metric}</strong>. They collect a <em>simple random sample</em> of
+        <strong>${n}</strong> employees. Define the <strong>population</strong>,
+        <strong>sample</strong>, <strong>parameter</strong>, and <strong>statistic</strong>.
+      `;
+      // Re-typeset any inline math we just injected
+      if (window.MathJax?.typesetPromise) { MathJax.typesetPromise([q1El]); }
+    }
+
+    // Q1: update solution list + “why random sampling?”
+    const modelList = document.getElementById("q1-model-list");
+    if (modelList) {
+      modelList.innerHTML = "";
+      [
+        `<strong>Population:</strong> All employees at ${company} whose ${metric} are of interest (this year).`,
+        `<strong>Sample:</strong> The ${n} employees selected via simple random sampling.`,
+        `<strong>Parameter:</strong> The population mean <em>\$begin:math:text$\\\\mu\\$end:math:text$</em> = average ${metric} for <em>all</em> employees.`,
+        `<strong>Statistic:</strong> The sample mean <em>\$begin:math:text$\\\\bar{x}\\$end:math:text$</em> computed from the ${n} sampled employees (and possibly the sample SD <em>\$begin:math:text$s\\$end:math:text$</em>).`
+      ].forEach(html => {
+        const li = document.createElement("li");
+        li.innerHTML = html;
+        modelList.appendChild(li);
+      });
+      if (window.MathJax?.typesetPromise) { MathJax.typesetPromise([modelList]); }
+    }
+    const q1Why = document.getElementById("q1-why");
+    if (q1Why) {
+      q1Why.innerHTML = `<strong>Why random sampling?</strong> It helps make the sample representative so the statistic is a good estimator of the parameter; it also justifies inference (CLT, SEs, CIs, tests).`;
+    }
+
+  // Q2: normal distribution numbers (random but answers tied to state)
 
   // Q2: normal distribution numbers
   const mu = Math.round(randInRange(7.0, 9.8) * 10) / 10;       // one decimal
@@ -96,21 +112,24 @@ function buildQ2Explanation(mu, sigma, k, threshold) {
   const steps = document.getElementById("q2-expl-steps");
   if (!steps) return;
   steps.innerHTML = "";
-  const z = k; // by construction threshold = mu + k*sigma
+
+  const z = k; // threshold = mu + k*sigma
   let tailPct = 16.0;
-  if (k === 1) tailPct = 16.0;
   if (k === 2) tailPct = 2.5;
   if (k === 3) tailPct = 0.15;
 
   [
-    `Compute a z-score: \\( z = (x - \\mu)/\\sigma = (${threshold} - ${mu})/${sigma} = ${z} \\).`,
+    `Compute a z-score: \$begin:math:text$ z = (x - \\\\mu)/\\\\sigma = (${threshold} - ${mu})/${sigma} = ${z} \\$end:math:text$.`,
     `Use the 68–95–99.7 rule: within ±1σ is ~68% (upper tail ~16%), ±2σ is ~95% (upper tail ~2.5%), ±3σ is ~99.7% (upper tail ~0.15%).`,
-    `Therefore, \\(P(X>${threshold})\\) ≈ <strong>${tailPct}%</strong> by the empirical rule.`
+    `Therefore, \$begin:math:text$P(X>${threshold})\\$end:math:text$ ≈ <strong>${tailPct}%</strong> by the empirical rule.`
   ].forEach(t => {
     const li = document.createElement("li");
     li.innerHTML = t;
     steps.appendChild(li);
   });
+
+  // Re-typeset the new math
+  if (window.MathJax?.typesetPromise) { MathJax.typesetPromise([steps]); }
 }
 
 function checkQ2Answer() {
