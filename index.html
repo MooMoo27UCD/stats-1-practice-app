@@ -129,38 +129,52 @@
     </section>
 
 
-    <section id="q3" class="card">
-      <h2>Question 3 — Joint and Conditional Probabilities</h2>
-      <p class="problem">Question 3. Joint and Conditional Probabilities [10 points] Let C = “buys coffee weekly” and L
-        = “uses loyalty card.” Given: P(C) = 0.60, P(L) = 0.40, and P(L | C) = 0.50.<br><strong>a)</strong> Compute P(C
-        ∩ L).<br><strong>b)</strong> Compute P(C | L).<br><strong>c)</strong> Interpret both probabilities in a
-        managerial context.</p>
-      <div class="grid-2">
-        <div class="calc-box">
-          <label>P(C ∩ L)
-            <input type="number" id="q3-int" step="0.01" placeholder="e.g., 0.30" />
-          </label>
-          <label>P(C | L)
-            <input type="number" id="q3-cond" step="0.01" placeholder="e.g., 0.75" />
-          </label>
-          <div class="actions">
-            <button id="q3-check">Check</button>
-            <button id="q3-show">Show Explanation</button>
-          </div>
-          <p class="hint">Tip: Enter as a decimal or percent (e.g., <strong>0.30</strong> or <strong>30</strong>).</p>
-          <div id="q3-feedback" class="feedback"></div>
-        </div>
-        <div id="q3-expl" class="answer hidden">
-          <h3>Solution</h3>
-          <ol>
-            <li>P(C ∩ L) = 0.60 × 0.50 = <strong>0.30</strong>.</li>
-            <li>P(C | L) = 0.30 / 0.40 = <strong>0.75</strong>.</li>
-            <li>Interpretation: 30% do both; among loyalty users, 75% buy coffee weekly.</li>
-          </ol>
-          <p><em>Reference:</em> Keller 12e — Ch. 6 (Probability).</p>
-        </div>
+<section id="q3" class="card">
+  <h2>Question 3 — Joint and Conditional Probabilities</h2>
+  <p class="problem">Question 3. Joint and Conditional Probabilities [10 points] Let C = “buys coffee weekly” and L
+    = “uses loyalty card.” Given: P(C) = 0.60, P(L) = 0.40, and P(L | C) = 0.50.<br><strong>a)</strong> Compute P(C
+    ∩ L).<br><strong>b)</strong> Compute P(C | L).<br><strong>c)</strong> Interpret both probabilities in a
+    managerial context.</p>
+  <div class="grid-2">
+    <div class="calc-box">
+      <label>P(C ∩ L)
+        <input type="number" id="q3-int" step="0.01" placeholder="e.g., 0.30" />
+      </label>
+      <label>P(C | L)
+        <input type="number" id="q3-cond" step="0.01" placeholder="e.g., 0.75" />
+      </label>
+      <div class="actions">
+        <button id="q3-check">Check</button>
+        <button id="q3-show">Show Explanation</button>
       </div>
-    </section>
+      <p class="hint">Tip: Enter as a decimal or percent (e.g., <strong>0.30</strong> or <strong>30</strong>).</p>
+      <div id="q3-feedback" class="feedback"></div>
+    </div>
+    <div id="q3-expl" class="answer hidden">
+      <h3>Solution</h3>
+      <ol>
+        <li>P(C ∩ L) = 0.60 × 0.50 = <strong>0.30</strong>.</li>
+        <li>P(C | L) = 0.30 / 0.40 = <strong>0.75</strong>.</li>
+        <li>Interpretation: 30% do both; among loyalty users, 75% buy coffee weekly.</li>
+      </ol>
+      <p><em>Reference:</em> Keller 12e — Ch. 6 (Probability).</p>
+
+      <!-- ✅ Added full interpretation block below -->
+      <div class="extra-interpretation">
+        <h4>Expanded Interpretation</h4>
+        <p>
+          60% of customers buy coffee weekly (<strong>P(C)</strong>), and 40% use loyalty cards (<strong>P(L)</strong>).
+          Among weekly coffee buyers, 50% use a loyalty card (<strong>P(L|C)</strong>); among loyalty users,
+          75% buy coffee weekly (<strong>P(C|L)</strong>).
+          Overall, 30% of all customers both buy coffee weekly and use a loyalty card
+          (<strong>P(C ∩ L)</strong>), representing the shop’s most engaged segment.
+        </p>
+      </div>
+      <!-- ✅ End of added content -->
+
+    </div>
+  </div>
+</section>
 
 
 
